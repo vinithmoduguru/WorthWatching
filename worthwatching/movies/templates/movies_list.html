@@ -1,0 +1,18 @@
+<h1>List of Movies</h1>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Rating</th>
+        <th>Released at</th>
+        <th>Genre</th>
+    </tr>
+    {% for movie in movies %}
+    <tr>
+        <td>{{ movie.name }}</td>
+        <td>{{ movie.released_at }}</td>
+        <td>{{ movie.genre }}</td>
+        <td>{{ movie.rating }}</td>
+    </tr>
+    {% endfor %}
+</table>
