@@ -1,10 +1,26 @@
-<form action="" method='POST'>
-    {% csrf_token %}
-    {% for field in form %}
+{% extends 'main.html' %}
+{% block content %}
 
-    <label for="formInput#text">{{field.label}}</label>
-    {{field}}
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class='formWrapper'>
+            <a class="backButton" href="{% url 'movies' %}"><i class="im im-angle-left"></i></a>
+            <br />
+            <form action="" method='POST'>
+                {% csrf_token %}
+                {% for field in form %}
 
-    {% endfor %}
-    <input type="submit" Value='Submit'>
-</form>
+                <div class="form__field">
+                    <label for="formInput#text">{{field.label}}</label>
+                    {{field}}
+                </div>
+
+                {% endfor %}
+                <input class="btn btn--sub btn--lg my-md" type="submit" Value='Submit'>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+{% endblock content %}

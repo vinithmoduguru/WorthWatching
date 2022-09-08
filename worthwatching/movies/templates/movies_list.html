@@ -1,13 +1,16 @@
-<h1>List of Movies</h1>
+{% extends 'main.html' %}
+{% block content %}
+<h1>Movies to Watch</h1>
 
 <div>
-    <h2>Watched any movie that's not here?</h2>
+    <p>Watched any movie that's not here?</p>
     <a href="{% url 'add-movie' %}">Add Movie</a>
+
     <br>
     <br>
 </div>
 
-<table>
+<table class="settings__table">
     <tr>
         <th>Name</th>
         <th>Rating</th>
@@ -16,14 +19,25 @@
     </tr>
     {% for movie in movies %}
     <tr>
-        <td>{{ movie.name }}</td>
-        <td>{{ movie.released_at }}</td>
-        <td>{{ movie.genre }}</td>
-        <td>{{ movie.rating }}</td>
-        <td><a class="tag tag--pill tag--main settings__btn" href="{% url 'update-movie' movie.id %}"><i
-                    class="im im-x-mark-circle-o"></i>Edit</a></td>
-        <td><a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-movie' movie.id %}"><i
-                    class="im im-x-mark-circle-o"></i>Delete</a></td>
+        <td>
+            {{ movie.name }}
+        </td>
+        <td>
+            {{ movie.released_at }}
+        </td>
+        <td>
+            {{ movie.genre }}
+        </td>
+        <td>
+            {{ movie.rating }}
+        </td>
+
+        <td class="settings__tableActions">
+            <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-movie' movie.id %}"><i
+                    class="im im-x-mark-circle-o"></i>Edit</a>
+            <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-movie' movie.id %}"><i
+                    class="im im-x-mark-circle-o"></i>Delete</a>
+        </td>
     </tr>
     {% endfor %}
 </table>
@@ -31,12 +45,13 @@
 <br>
 <br>
 <div class="auth__alternative">
-    <h2>Don’t have an Account?</h2>
+    <p>Don’t have an Account?</p>
     <a href="{% url 'register' %}">Sign Up</a>
 </div>
 
 
 <div class="auth__alternative">
-    <h2>Got the movie to watch?</h2>
+    <p>Got the movie to watch?</p>
     <a href="{% url 'logout' %}">Log out</a>
 </div>
+{% endblock content %}

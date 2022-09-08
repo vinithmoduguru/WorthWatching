@@ -1,7 +1,17 @@
-<form class="form" action="" method="POST">
-    {% csrf_token %}
-    <p>Are you sure you want to delete {{object}}?</p>
-    <a class="btn btn--sub btn--lg my-md" href="{% url 'movies' %}"> Go Back </a>
+{% extends 'main.html' %}
+{% block content %}
 
-    <input class="btn btn--sub btn--lg my-md" type="submit" value="Confirm" />
-</form>
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <form class="form" action="" method="POST">
+                {% csrf_token %}
+                <p>Are you sure you want to delete {{object}}?</p>
+                <a class="btn btn--sub btn--lg my-md" href="{% url 'movies' %}"> Go Back </a>
+
+                <input class="btn btn--sub btn--lg my-md" type="submit" value="Confirm" />
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock content %}
