@@ -1,0 +1,7 @@
+<form class="form" action="" method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{object}}?</p>
+    <a class="btn btn--sub btn--lg my-md" href="{% url 'movies' %}"> Go Back </a>
+
+    <input class="btn btn--sub btn--lg my-md" type="submit" value="Confirm" />
+</form>

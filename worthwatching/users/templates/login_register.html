@@ -1,0 +1,57 @@
+{% if page == 'register' %}
+<h3>Register</h3>
+<form method="POST" action={% url 'register' %}>
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form__field">
+        <label for="formInput#text">{{field.label}}</label>
+        {{field}}
+        {% for error in field.errors %}
+        <p style="color:red">{{error}}</p>
+        {% endfor %}
+    </div>
+
+    {% endfor %}
+
+    <div class="auth__actions">
+        <input class="btn btn--sub btn--lg" type="submit" value="Sign  Up" />
+    </div>
+
+
+    <div class="auth__alternative">
+        <p>Already have an Account?</p>
+        <a href="{% url 'login' %}">Log In</a>
+    </div>
+    </div>
+</form>
+
+{% else %}
+<a href="{% url 'movies' %}">Home</a>
+
+<br>
+<br>
+
+<form action="" method="POST" class="form auth__form">
+    {% csrf_token %}
+    <!-- Input:Username -->
+    <div class="form__field">
+        <label for="formInput#text">Username: </label>
+        <input class="input input--text" id="formInput#text" type="text" name="username"
+            placeholder="Enter your username..." />
+    </div>
+
+    <!-- Input:Password -->
+    <div class="form__field">
+        <label for="formInput#password">Password: </label>
+        <input class="input input--password" id="formInput#passowrd" type="password" name="password"
+            placeholder="••••••••" />
+    </div>
+    <div class="auth__actions">
+        <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
+    </div>
+</form>
+<div class="auth__alternative">
+    <h2>Don’t have an Account?</h2>
+    <a href="{% url 'register' %}">Sign Up</a>
+</div>
+{% endif %}

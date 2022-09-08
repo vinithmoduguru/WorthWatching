@@ -1,5 +1,12 @@
 <h1>List of Movies</h1>
 
+<div>
+    <h2>Watched any movie that's not here?</h2>
+    <a href="{% url 'add-movie' %}">Add Movie</a>
+    <br>
+    <br>
+</div>
+
 <table>
     <tr>
         <th>Name</th>
@@ -13,6 +20,23 @@
         <td>{{ movie.released_at }}</td>
         <td>{{ movie.genre }}</td>
         <td>{{ movie.rating }}</td>
+        <td><a class="tag tag--pill tag--main settings__btn" href="{% url 'update-movie' movie.id %}"><i
+                    class="im im-x-mark-circle-o"></i>Edit</a></td>
+        <td><a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-movie' movie.id %}"><i
+                    class="im im-x-mark-circle-o"></i>Delete</a></td>
     </tr>
     {% endfor %}
 </table>
+
+<br>
+<br>
+<div class="auth__alternative">
+    <h2>Don’t have an Account?</h2>
+    <a href="{% url 'register' %}">Sign Up</a>
+</div>
+
+
+<div class="auth__alternative">
+    <h2>Got the movie to watch?</h2>
+    <a href="{% url 'logout' %}">Log out</a>
+</div>
