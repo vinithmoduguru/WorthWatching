@@ -7,7 +7,7 @@
             <h1>Movies to Watch</h1>
 
             <div>
-                {% if perms.movies.modify_movie %}
+                {% if request.user.is_staff %}
                 <a href="{% url 'add-movie' %}">Add Movie</a>
                 {% endif %}
             </div>
