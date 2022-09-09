@@ -1,57 +1,64 @@
 {% extends 'main.html' %}
 {% block content %}
-<h1>Movies to Watch</h1>
 
-<div>
-    <p>Watched any movie that's not here?</p>
-    <a href="{% url 'add-movie' %}">Add Movie</a>
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class='formWrapper'>
+            <h1>Movies to Watch</h1>
 
-    <br>
-    <br>
-</div>
+            <div>
+                {% if perms.movies.modify_movie %}
+                <a href="{% url 'add-movie' %}">Add Movie</a>
+                {% endif %}
+            </div>
 
-<table class="settings__table">
-    <tr>
-        <th>Name</th>
-        <th>Rating</th>
-        <th>Released at</th>
-        <th>Genre</th>
-    </tr>
-    {% for movie in movies %}
-    <tr>
-        <td>
-            {{ movie.name }}
-        </td>
-        <td>
-            {{ movie.released_at }}
-        </td>
-        <td>
-            {{ movie.genre }}
-        </td>
-        <td>
-            {{ movie.rating }}
-        </td>
+            <table class="settings__table">
+                <tr>
+                    <th>Name</th>
+                    <th>Rating</th>
+                    <th>Released at</th>
+                    <th>Genre</th>
+                </tr>
+                {% for movie in movies %}
+                <tr>
+                    <td>
+                        {{ movie.name }}
+                    </td>
+                    <td>
+                        {{ movie.released_at }}
+                    </td>
+                    <td>
+                        {{ movie.genre }}
+                    </td>
+                    <td>
+                        {{ movie.rating }}
+                    </td>
 
-        <td class="settings__tableActions">
-            <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-movie' movie.id %}"><i
-                    class="im im-x-mark-circle-o"></i>Edit</a>
-            <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-movie' movie.id %}"><i
-                    class="im im-x-mark-circle-o"></i>Delete</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+                    {% if perms.movies.modify_movie %}
+                    <td class="settings__tableActions">
+                        <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-movie' movie.id %}"><i
+                                class="im im-x-mark-circle-o"></i>Edit</a>
+                        <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-movie' movie.id %}"><i
+                                class="im im-x-mark-circle-o"></i>Delete</a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
 
-<br>
-<br>
-<div class="auth__alternative">
-    <p>Don’t have an Account?</p>
-    <a href="{% url 'register' %}">Sign Up</a>
-</div>
+            <br>
+            <br>
+            <div class="auth__alternative">
+                <p>Don’t have an Account?</p>
+                <a href="{% url 'register' %}">Sign Up</a>
+            </div>
 
 
-<div class="auth__alternative">
-    <p>Got the movie to watch?</p>
-    <a href="{% url 'logout' %}">Log out</a>
-</div>
+            <div class="auth__alternative">
+                <p>Got the movie to watch?</p>
+                <a href="{% url 'logout' %}">Log out</a>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock content %}

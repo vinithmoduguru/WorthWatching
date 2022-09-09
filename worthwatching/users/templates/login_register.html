@@ -4,6 +4,9 @@
 {% if page == 'register' %}
 <div class="auth">
     <div class="card">
+        <div class="auth__alternative">
+            <a href="{% url 'movies' %}">Home</a>
+        </div>
         <h3>Register</h3>
         <form method="POST" action={% url 'register' %}>
             {% csrf_token %}
@@ -32,12 +35,11 @@
 </div>
 
 {% else %}
-<a href="{% url 'movies' %}">Home</a>
-
-<br>
-<br>
 <div class="auth">
     <div class="card">
+        <div class="auth__alternative">
+            <a href="{% url 'movies' %}">Home</a>
+        </div>
         <form action="" method="POST" class="form auth__form">
             {% csrf_token %}
             <!-- Input:Username -->

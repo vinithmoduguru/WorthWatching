@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
 from .models import Movie
 from .forms import MovieForm
@@ -13,6 +14,7 @@ def movies(request):
 
 
 @login_required(login_url='login')
+@staff_member_required
 def addMovie(request):
     form = MovieForm()
 
@@ -29,6 +31,7 @@ def addMovie(request):
 
 
 @login_required(login_url='login')
+@staff_member_required
 def deleteMovie(request, pk):
     movie = Movie.objects.get(id=pk)
     if request.method == 'POST':
@@ -40,6 +43,7 @@ def deleteMovie(request, pk):
 
 
 @login_required(login_url='login')
+@staff_member_required
 def updateMovie(request, pk):
     movie = Movie.objects.get(id=pk)
     form = MovieForm(instance=movie)

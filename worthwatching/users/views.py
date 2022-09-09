@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
+from django.contrib.contenttypes.models import ContentType
 from django.contrib import messages
 from .forms import CustomUserCreationForm
+from movies.models import Movie
 # Create your views here.
 
 def loginUser(request):
@@ -45,6 +47,16 @@ def registerUser(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
+
+            #Giving Permissions
+            userid = User.objects.get(username=user.username)
+            content_type = ContentType.objects.get_for_model(Movie)
+            permission = Permission.objects.get(codename='modify_movie', content_type = content_type)
+
+            #Add Permission
+            # userid.user_permissions.add(permission)
+
+
 
             messages.success(request, 'User Account is created!')
 
