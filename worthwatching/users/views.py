@@ -48,11 +48,6 @@ def registerUser(request):
             user.username = user.username.lower()
             user.save()
 
-            #Giving Permissions
-            userid = User.objects.get(username=user.username)
-            content_type = ContentType.objects.get_for_model(Movie)
-            permission = Permission.objects.get(codename='modify_movie', content_type = content_type)
-
             #Add Permission
             # userid.user_permissions.add(permission)
 
